@@ -21,13 +21,7 @@ public class DbService {
 
     public Task saveTask(final Task task) {return repository.save(task);}
 
-    public void deleteTask(final Long taskId) {
-        try {
-            repository.deleteById(taskId);
-        } catch (TaskNotFoundException e){
-            System.out.println( e.getMessage());
-        }
-    }
+    public void deleteTask(final Long taskId) {repository.deleteById(taskId);}
 
 
 }
