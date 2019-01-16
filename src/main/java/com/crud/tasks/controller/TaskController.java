@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController // Adnotacją oznaczamy klasę, którą chcemy "wystawić" dla świata — za jej pomocą tworzymy wejście do aplikacji z zewnętrznego świata
 @RequestMapping("/v1/task") // Dzięki tej operacji, nasz RestController będzie dostępny pod poniższym adresem: http://localhost:8080/v1/task
 public class TaskController {
@@ -36,9 +38,9 @@ public class TaskController {
         return new TaskDto(1L, "edited test title", "test content");
     }
 
-    @PostMapping("create")
+    @PostMapping(value = "createTask", consumes = APPLICATION_JSON_VALUE)
     public void createTask(@RequestBody TaskDto taskDto) {
-
+        service.saveTask(taskMapper.mapToTask(taskDto));
     }
 
 
