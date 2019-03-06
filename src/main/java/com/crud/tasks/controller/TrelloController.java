@@ -1,7 +1,6 @@
 package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.TrelloBoardDto;
-import com.crud.tasks.exceptions.NoBoardsFoundException;
 import com.crud.tasks.trello.client.TrelloClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,18 +13,20 @@ import java.util.List;
 @RequestMapping("/v1/trello")
 public class TrelloController {
 
+    private final String REQUIRED_SUBSTRING = "kodilla";
+
     @Autowired
     private TrelloClient trelloClient;
 
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
     public void getTrelloBoards() {
 
-        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards().orElseThrow(() -> new NoBoardsFoundException());
+        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
 
         trelloBoards.stream()
-                .filter(e -> e.getId().length() > 0 )
-                .filter(e -> e.getName().length() > 0)
-                .filter(e -> e.getName().toLowerCase().contains("kodilla") )
+                .filter(e -> e.getId() != null )
+                .filter(e -> e.getName() != null )
+                .filter(e -> e.getName().toLowerCase().contains(REQUIRED_SUBSTRING) )
                 .forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
 
     }
