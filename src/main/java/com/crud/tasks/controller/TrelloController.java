@@ -13,6 +13,8 @@ import java.util.List;
 @RequestMapping("/v1/trello")
 public class TrelloController {
 
+    private final String REQUIRED_SUBSTRING = "kodilla";
+
     @Autowired
     private TrelloClient trelloClient;
 
@@ -21,7 +23,11 @@ public class TrelloController {
 
         List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
 
-        trelloBoards.forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
+        trelloBoards.stream()
+                .filter(e -> e.getId() != null )
+                .filter(e -> e.getName() != null )
+                .filter(e -> e.getName().toLowerCase().contains(REQUIRED_SUBSTRING) )
+                .forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
 
     }
 }
