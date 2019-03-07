@@ -27,7 +27,13 @@ public class TrelloController {
                 .filter(e -> e.getId() != null )
                 .filter(e -> e.getName() != null )
                 .filter(e -> e.getName().toLowerCase().contains(REQUIRED_SUBSTRING) )
-                .forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
+                .forEach(trelloBoardDto -> {
+                    System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName());
+                    System.out.println("This board contains lists: ");
+                    trelloBoardDto.getLists().forEach(trelloList ->
+                            System.out.println(trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()));
+
+                });
 
     }
 }
