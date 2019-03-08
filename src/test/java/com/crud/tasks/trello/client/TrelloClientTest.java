@@ -1,5 +1,6 @@
 package com.crud.tasks.trello.client;
 
+import com.crud.tasks.domain.AttachmentsByTypeDto;
 import com.crud.tasks.domain.BadgesDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
@@ -77,7 +78,7 @@ public class TrelloClientTest {
                 "1",
                 "Test task",
                 "http://test.com",
-                new BadgesDto()
+                new BadgesDto() //pole wynikające z poprzedniego zadania
         );
 
         when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
@@ -90,5 +91,4 @@ public class TrelloClientTest {
         assertEquals("Test task", newCard.getName());
         assertEquals("http://test.com", newCard.getShortUrl());
     }
-
 }
