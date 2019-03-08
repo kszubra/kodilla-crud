@@ -6,6 +6,7 @@ import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.mapper.CreatedTrelloCard;
 import com.crud.tasks.trello.config.TrelloConfig;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -91,4 +92,6 @@ public class TrelloClientTest {
         assertEquals("Test task", newCard.getName());
         assertEquals("http://test.com", newCard.getShortUrl());
     }
+
+
 }
