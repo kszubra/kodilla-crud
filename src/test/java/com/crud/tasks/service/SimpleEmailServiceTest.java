@@ -25,7 +25,11 @@ public class SimpleEmailServiceTest {
     @Test
     public void shouldSendEmail() {
         //Given
-        Mail mail = new Mail("ktrello@wp.pl", null, "Test subject", "Test message");
+        Mail mail = Mail.builder()
+                        .mailTo("ktrello@wp.pl")
+                        .subject("Test")
+                        .message("Test message")
+                        .build();
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
@@ -42,7 +46,12 @@ public class SimpleEmailServiceTest {
     @Test
     public void shouldSendEmailAndCc() {
         //Given
-        Mail mail = new Mail("ktrello@wp.pl", "kacper.szubra@gmail.com", "Test subject", "Test message");
+        Mail mail = Mail.builder()
+                .mailTo("ktrello@wp.pl")
+                .toCc("kacper.szubra@gmail.com")
+                .subject("Test")
+                .message("Test message")
+                .build();
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
