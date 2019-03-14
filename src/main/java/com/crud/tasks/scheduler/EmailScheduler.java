@@ -24,12 +24,14 @@ public class EmailScheduler {
 
     @Scheduled(cron = "0 0 10 * * *")
     //@Scheduled(fixedDelay = 10000)
-    public void sendInformationEmail() { //metody które są poddane interwałowi niczego nie zwracają!
+    public void sendInformationEmail() {
         long size = taskRepository.count();
+        String taskWord = (size == 1) ? " task " : " tasks ";
+
         simpleEmailService.send( Mail.builder()
                         .mailTo(adminConfig.getAdminMail())
                         .subject(SUBJECT)
-                        .message("You have " + size + " tasks in database")
+                        .message("You have " + size + taskWord + "in database")
                         .build()
                 );
 
