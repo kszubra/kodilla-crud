@@ -22,8 +22,8 @@ public class EmailScheduler {
 
     private static final String SUBJECT = "Tasks: Daily update mail";
 
-    //@Scheduled(cron = "0 0 10 * * *")
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(cron = "0 0 10 * * *")
+    //@Scheduled(fixedDelay = 10000)
     public void sendInformationEmail() { //metody które są poddane interwałowi niczego nie zwracają!
         long size = taskRepository.count();
         simpleEmailService.send( Mail.builder()
