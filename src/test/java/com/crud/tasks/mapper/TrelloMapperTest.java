@@ -35,6 +35,13 @@ public class TrelloMapperTest {
         Assert.assertEquals("one", result.get(0).getName());
         Assert.assertEquals("two", result.get(1).getName());
         Assert.assertEquals("three", result.get(2).getName());
+        Assert.assertEquals("1", result.get(0).getId());
+        Assert.assertEquals("2", result.get(1).getId());
+        Assert.assertEquals("3", result.get(2).getId());
+        Assert.assertEquals(0, result.get(0).getLists().size());
+        Assert.assertEquals(0, result.get(1).getLists().size());
+        Assert.assertEquals(0, result.get(2).getLists().size());
+
     }
 
     @Test
@@ -53,6 +60,12 @@ public class TrelloMapperTest {
         Assert.assertEquals("one", result.get(0).getName());
         Assert.assertEquals("two", result.get(1).getName());
         Assert.assertEquals("three", result.get(2).getName());
+        Assert.assertEquals("1", result.get(0).getId());
+        Assert.assertEquals("2", result.get(1).getId());
+        Assert.assertEquals("3", result.get(2).getId());
+        Assert.assertEquals(0, result.get(0).getLists().size());
+        Assert.assertEquals(0, result.get(1).getLists().size());
+        Assert.assertEquals(0, result.get(2).getLists().size());
 
     }
 
@@ -70,8 +83,14 @@ public class TrelloMapperTest {
         //Then
         Assert.assertEquals(3, result.size());
         Assert.assertEquals("one", result.get(0).getName());
-        Assert.assertEquals(false, result.get(1).isClosed());
+        Assert.assertEquals("two", result.get(1).getName());
+        Assert.assertEquals("three", result.get(2).getName());
+        Assert.assertEquals("1", result.get(0).getId());
+        Assert.assertEquals("2", result.get(1).getId());
         Assert.assertEquals("3", result.get(2).getId());
+        Assert.assertEquals(true, result.get(0).isClosed());
+        Assert.assertEquals(false, result.get(1).isClosed());
+        Assert.assertEquals(true, result.get(2).isClosed());
     }
 
     @Test
@@ -88,8 +107,14 @@ public class TrelloMapperTest {
         //Then
         Assert.assertEquals(3, result.size());
         Assert.assertEquals("one", result.get(0).getName());
-        Assert.assertEquals(true, result.get(1).isClosed());
+        Assert.assertEquals("two", result.get(1).getName());
+        Assert.assertEquals("three", result.get(2).getName());
+        Assert.assertEquals("1", result.get(0).getId());
+        Assert.assertEquals("2", result.get(1).getId());
         Assert.assertEquals("3", result.get(2).getId());
+        Assert.assertEquals(false, result.get(0).isClosed());
+        Assert.assertEquals(true, result.get(1).isClosed());
+        Assert.assertEquals(false, result.get(2).isClosed());
     }
 
     @Test
