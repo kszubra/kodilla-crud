@@ -17,7 +17,7 @@ public class TrelloValidator {
         if(trelloCard.getName().contains("test")) {
             LOGGER.info("Testing card");
         } else {
-            LOGGER.info("Normal user");
+            LOGGER.info("Normal card");
         }
     }
 
