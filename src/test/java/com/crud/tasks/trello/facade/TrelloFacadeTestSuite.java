@@ -101,12 +101,12 @@ public class TrelloFacadeTestSuite {
     }
 
     @Test
-    public void createdCardTest() {
+    public void testCreatedCard() {
         //Given
-        TrelloCard trelloCard = new TrelloCard("name", "desc", "pos", "listId");
-        TrelloCardDto trelloCardDto = new TrelloCardDto("name", "desc", "pos", "listId");
+        TrelloCard trelloCard = new TrelloCard("name", "abc", "top", "123");
+        TrelloCardDto trelloCardDto = new TrelloCardDto("name", "abc", "top", "123");
         BadgesDto badgesDto = new BadgesDto(3, new AttachmentsByTypeDto());
-        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto("id", "name", "shortUrl", badgesDto);
+        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto("1", "one", "url", badgesDto);
 
         when(trelloMapper.mapToCard(trelloCardDto)).thenReturn(trelloCard);
         when(trelloMapper.mapToCardDto(trelloCard)).thenReturn(trelloCardDto);
@@ -116,9 +116,11 @@ public class TrelloFacadeTestSuite {
         CreatedTrelloCardDto result = trelloFacade.createCard(trelloCardDto);
 
         //Then
-        assertEquals("id", result.getId());
-        assertEquals("name", createdTrelloCardDto.getName());
-        assertEquals("shortUrl", createdTrelloCardDto.getShortUrl());
+        assertEquals("1", result.getId());
+        assertEquals("one", createdTrelloCardDto.getName());
+        assertEquals("url", createdTrelloCardDto.getShortUrl());
         assertEquals(badgesDto, createdTrelloCardDto.getBadges());
     }
+
+
 }
