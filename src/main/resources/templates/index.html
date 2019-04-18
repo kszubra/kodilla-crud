@@ -7,15 +7,15 @@
 </head>
 <body>
 <h1>First impression</h1>
-
 <!--/*@thymesVar id="variable" type="com.crud.tasks.controller.StaticWebPageController"*/-->
 <span th:text="${variable}"></span><br/>
-
-<br>
-
-<!--/*@thymesVar id="one" type="com.crud.tasks.controller.StaticWebPageController"*/-->
 <!--/*@thymesVar id="two" type="com.crud.tasks.controller.StaticWebPageController"*/-->
-<span th:text="${one} + ${two}"></span>
+<code>
+    <span th:text="|${two} * ${two} = | + ${two} * ${two}")></span><br/>
+    <span th:text="|${two} * ${two} + ${two} = | + (${two} * ${two} + ${two})")></span><br/>
+    <span th:text="|${two} - ${two} * ${two} = | + (${two} - ${two} * ${two})")></span><br/>
+</code>
+
 
 </body>
 </html>
