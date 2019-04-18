@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>My welcome page</title>
 </head>
 <body>
+<h1>My first page</h1>
 
+<!--/*@thymesVar id="variable" type="com.crud.tasks.controller.StaticWebPageController"*/
+tag <span> - nie wpływa sam w sobie na tekst. Jest pewnego rodzaju otagowaniem tekstu w dokumencie HTML, w celu nadania mu atrybutów.
+th:text - atrybut udostępniony przez Thymeleaf - jego zadaniem jest wyświetlenie zmiennej jako test w tagu w którym jest atrybutem. W tym wypadku <span>
+${variable} - wykorzystanie formuły ${...} jest obowiązkowe w celu pobrania zmiennej. Wewnątrz klamer wpisujemy nazwę zmiennej zadeklarowanej wewnątrz mapy w metodzie index.-->
+<span th:text="${variable}"></span><br/>
+<!--/*@thymesVar id="two" type="com.crud.tasks.controller.StaticWebPageController"*/-->
 </body>
 </html>
