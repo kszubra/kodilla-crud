@@ -62,8 +62,6 @@ public class MailCreatorService {
 
     private String buildTrelloTaskCountMail(String message) {
         List<Task> tasks = taskRepository.findAll();
-        long taskNumber = tasks.size();
-
         Context context = new Context();
         context.setVariable("message", message);
         context.setVariable("tasks_url", "http://localhost:8888/tasks");

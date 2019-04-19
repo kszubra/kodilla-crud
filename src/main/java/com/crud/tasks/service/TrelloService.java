@@ -32,7 +32,7 @@ public class TrelloService {
     public CreatedTrelloCardDto createTrelloCard(final TrelloCardDto trelloCardDto) {
         CreatedTrelloCardDto newCard = trelloClient.createNewCard(trelloCardDto);
 
-        Optional.ofNullable(newCard).ifPresent(e -> emailService.send(
+        Optional.ofNullable(newCard).ifPresent(e -> emailService.send(MailCreatorService.MAIL_TYPE_NEW_CARD,
                                                           Mail.builder()
                                                           .mailTo(adminConfig.getAdminMail())
                                                           .subject(SUBJECT)
