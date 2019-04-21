@@ -51,7 +51,7 @@ public class TaskControllerTestSuite {
         when(taskMapper.mapToTaskDtoList(tasks)).thenReturn(dtos);
 
         // When & Then
-        mockMvc.perform(get("/v1/task/getTasks").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/tasks").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(1)))
@@ -73,7 +73,7 @@ public class TaskControllerTestSuite {
         when(taskMapper.mapToTaskDto(task)).thenReturn(taskDto);
 
         // When & Then
-        mockMvc.perform(get("/v1/task/getTask/1").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/tasks/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.title", is("title")))
@@ -84,7 +84,7 @@ public class TaskControllerTestSuite {
     @Test
     public void testDeleteTaskById() throws Exception {
         //When & Then
-        mockMvc.perform(delete("/v1/task/deleteTask")
+        mockMvc.perform(delete("/v1/tasks/1")
                 .param("taskId", String.valueOf(1L)))
                 .andExpect(status().isOk());
         verify(service, times(1)).deleteTask(1L);
@@ -100,7 +100,7 @@ public class TaskControllerTestSuite {
         String jsonContent = gson.toJson(taskDto);
 
         // When & Then
-        mockMvc.perform(post("/v1/task/createTask")
+        mockMvc.perform(post("/v1/tasks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
@@ -121,7 +121,7 @@ public class TaskControllerTestSuite {
         String jsonContent = gson.toJson(taskDto);
 
         // When & Then
-        mockMvc.perform(put("/v1/task/updateTask").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put("/v1/tasks").contentType(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonContent))
                 .andExpect(status().isOk())

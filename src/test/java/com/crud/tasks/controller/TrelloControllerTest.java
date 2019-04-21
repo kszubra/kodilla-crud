@@ -57,7 +57,7 @@ public class TrelloControllerTest {
         when(trelloFacade.fetchTrelloBoards()).thenReturn(trelloBoards);
 
         //When & Then
-        mockMvc.perform(get("/v1/trello/getTrelloBoards").contentType(MediaType.APPLICATION_JSON)) //przygotowanie do wysłania żądania - metoda ta oczekuje sprecyzowania jakiego rodzaju żądanie ma zostać wykonane.  get() zwraca obiekt MockHttpServletRequestBuilder możemy rozbudować nasze żądanie o dodatkowe parametry - w tym wypadku contentType(), który musi być typu APPLICATION_JSON.
+        mockMvc.perform(get("/v1/trello/boards").contentType(MediaType.APPLICATION_JSON)) //przygotowanie do wysłania żądania - metoda ta oczekuje sprecyzowania jakiego rodzaju żądanie ma zostać wykonane.  get() zwraca obiekt MockHttpServletRequestBuilder możemy rozbudować nasze żądanie o dodatkowe parametry - w tym wypadku contentType(), który musi być typu APPLICATION_JSON.
                 .andExpect(status().is(200)) // lub isOk()
                 .andExpect(jsonPath("$", hasSize(0))); //pozwala ona na wertowanie po odpowiedzi z serwera - musimy użyć znaku dolara ($), który oznacza naszą odpowiedź. Gdybyśmy potrzebowali odwołać się do konkretnego klucza JSON z odpowiedzi w teście, moglibyśmy użyć wyrażenia $.key.
     }
@@ -74,7 +74,7 @@ public class TrelloControllerTest {
         when(trelloFacade.fetchTrelloBoards()).thenReturn(trelloBoards);
 
         //When & Then
-        mockMvc.perform(get("/v1/trello/getTrelloBoards").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/trello/boards").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 //Trello board fields
                 .andExpect(jsonPath("$", hasSize(1)))
@@ -109,7 +109,7 @@ public class TrelloControllerTest {
         String jsonContent = gson.toJson(trelloCardDto);
 
         //When & Then
-        mockMvc.perform(post("/v1/trello/createTrelloCard")
+        mockMvc.perform(post("/v1/trello/cards")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
